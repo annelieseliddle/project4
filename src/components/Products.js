@@ -1,32 +1,42 @@
 import React from 'react'
-import "./Products.css"
+import store from '../store'
+import ProductDetail from "./ProductDetail";
+import { Link } from 'react-router-dom';
 
 class Products extends React.Component{
 
+    getDetails(product){
+        //console.log(product, this.props)
+    }
+
     renderProducts(){
-        return this.props.products.map(product => {
+        return store.getState().products.map(product => {
             return (
-                <div className="ui card">
+                <div key={product.id} className="ui card">
                     <div className="content">
                         <div className="header">{product.title}</div>
                     </div>
                     <div className="content">
-                        <img src={product.img}/>
+                        <img height={170} src={product.img}/>
                         <h4 className="ui sub header">{"$"}{product.price}</h4>
                     </div>
                     <div className="extra content">
-                        <div className="ui animated button" tabIndex="0">
-                            <div className="visible content">View Details</div>
-                            <div className="hidden content">
-                                <i className="right arrow icon"></i>
+                        <Link to={`/ProductDetail/${product.id}`}>
+                            <div className="ui animated button" tabIndex="0" onClick={() => this.getDetails(product)}>
+                                <div className="visible content">View Details</div>
+                                <div className="hidden content">
+                                    <i className="right arrow icon"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div className="ui animated button" tabIndex="0">
-                            <div className="visible content">
-                                <i className="shop icon"></i>
+                        </Link>
+                        <Link to={`/Cart/${product.id}`}>
+                            <div className="ui animated button" tabIndex="0">
+                                <div className="visible content">
+                                    <i className="shop icon"></i>
+                                </div>
+                                <div className="hidden content">Cart</div>
                             </div>
-                            <div className="hidden content">Cart</div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             )
@@ -40,4 +50,4 @@ class Products extends React.Component{
 
 }
 
-export default Products
+export default Products;
