@@ -1,12 +1,14 @@
 import React from 'react'
 import store from '../store'
-import ProductDetail from "./ProductDetail";
 import { Link } from 'react-router-dom';
 
 class Products extends React.Component{
 
     getDetails(product){
         //console.log(product, this.props)
+    }
+    addToCart(product){
+        console.log(product, this.props)
     }
 
     renderProducts(){
@@ -30,7 +32,7 @@ class Products extends React.Component{
                             </div>
                         </Link>
                         <Link to={`/Cart/${product.id}`}>
-                            <div className="ui animated button" tabIndex="0">
+                            <div className="ui animated button" tabIndex="0" onClick={() => this.addToCart(product)}>
                                 <div className="visible content">
                                     <i className="shop icon"></i>
                                 </div>

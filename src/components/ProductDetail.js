@@ -14,15 +14,14 @@ class ProductDetail extends React.Component{
                     <h4>Rating: {p.rating}</h4>
                     <h4>Category: {p.category}</h4>
                 </div>
-        )
+            )
         })
     }
 
     render() {
         return <div>{this.renderProduct()}</div>
     }
-
-};
+}
 
 
 export default ProductDetail;
